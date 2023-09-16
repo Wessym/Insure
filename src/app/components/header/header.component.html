@@ -1,0 +1,60 @@
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5">
+  <a href="index.html" class="navbar-brand d-flex align-items-center">
+    <h1 class="m-0">
+      <img class="img-fluid me-3" src="assets/images/icon/icon-02-primary.png" alt="" />Insure
+    </h1>
+  </a>
+  <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav mx-auto bg-light rounded pe-4 py-3 py-lg-0">
+      <a routerLink="" class="nav-item nav-link active">Accueil</a>
+      <a routerLink="/propos" class="nav-item nav-link">A Propos</a>
+      <a routerLink="nos-services" class="nav-item nav-link">Nos Services</a>
+      <a routerLink="contacter-nous" class="nav-item nav-link">Contacter Nous</a>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- ************************************************* IF CONNECTED USER  ******************************************* -->
+<div *ngIf="name">
+
+  <ul class="navbar-nav">
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <img src="{{connectedUser.avatar}}" width="40" height="40" class="rounded-circle">
+      <b style="margin-left: 10px;">{{name}}</b>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <a class="dropdown-item" [routerLink]="role === 'Assuré' ? '/assure-profile' : '/assureur-profile'">Dashboard</a>
+      <!-- <a class="dropdown-item" href="#">Edit Profile</a> -->
+      <a class="dropdown-item" href="" (click)="logout()">Log Out</a>
+    </div>
+  </li>   
+</ul>
+
+
+</div>
+
+<div class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5" *ngIf="!name">
+    <a routerLink="/login" class="btn btn-primary px-3 d-none d-lg-block" style="margin-right: 5px;">Se Connecter</a>
+    <a routerLink="/signup" class="btn btn-primary px-3 d-none d-lg-block">S'inscrire</a>
+</div>
+
+
+
+
+
+  <!-- ************************************************* IF CONNECTED USER  ******************************************* -->
+
+
+</nav>
+<!-- Navbar End -->
+
+<app-banner></app-banner>

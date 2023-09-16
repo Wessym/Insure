@@ -1,0 +1,111 @@
+<div class="panel-header">
+    <div class="header text-center">
+        <h2 class="title">Demandes</h2>
+    </div>
+</div>
+
+<div *ngIf="isLoading" style="margin-left: 47%; margin-top: 5%;margin-bottom: 5%;">
+    <!-- Show loading indicator or message -->
+    <div id="wifi-loader">
+        <svg class="circle-outer" viewBox="0 0 86 86">
+            <circle class="back" cx="43" cy="43" r="40"></circle>
+            <circle class="front" cx="43" cy="43" r="40"></circle>
+            <circle class="new" cx="43" cy="43" r="40"></circle>
+        </svg>
+        <svg class="circle-middle" viewBox="0 0 60 60">
+            <circle class="back" cx="30" cy="30" r="27"></circle>
+            <circle class="front" cx="30" cy="30" r="27"></circle>
+        </svg>
+        <svg class="circle-inner" viewBox="0 0 34 34">
+            <circle class="back" cx="17" cy="17" r="14"></circle>
+            <circle class="front" cx="17" cy="17" r="14"></circle>
+        </svg>
+        <div class="text" data-text="Loading..."></div>
+    </div>
+
+</div>
+
+<div *ngIf="!isLoading">
+    <!-- Display the component content once loading is complete -->
+    <!-- Your existing code here -->
+    <div class="main-content">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="places-buttons">
+                            <div class="row">
+                                <div class="col-md-6 ml-auto mr-auto text-center">
+                                    <h4 class="card-title">
+                                        Stock<p class="category">Click to view notifications</p>
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <table class="table text-center">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>ASSURE</th>
+                                        <th>MONTANT</th>
+                                        <th>TYPE</th>
+                                        <th>PRESTATAIRE</th>
+                                        <th>JUSTIFICATIF</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let m of demandesWithUsers">
+                                      <tr *ngIf="m.status === 'Not Confirmed'">
+                                        <td>{{ m._id }}</td>
+                                        <td>{{ m.user[0].name }}</td>
+                                        <td>{{ m.montant }}</td>
+                                        <td>{{ m.type }}</td>
+                                        <td>{{ m.prestataire }}</td>
+                                        <td>{{ m.justif }}</td>
+                                        <td>
+                                          <input type="button" (click)="confirmDemande(m._id)" data-bs-toggle="modal" data-bs-target="#exampleModal" value="ACCEPTER" class="btn btn-info btn-sm" >
+                                          <input type="button" value="ANNULER" class="btn btn-danger btn-sm" (click)="toggleRejectionTextArea(m._id)">
+                                        </td>
+                                      </tr>
+                                      <tr *ngIf="showRejectionTextArea && rejectedDemandeId === m._id">
+                                        <td colspan="6">
+                                          <textarea [(ngModel)]="rejectionForm.cause" #rejectionTextarea placeholder="Enter cause..."></textarea>
+                                          <button class="btn btn-primary" (click)="rejectDemande((m._id),rejectionTextarea.value)">Confirm</button>
+                                        </td>
+                                      </tr>
+                                    </ng-container>
+                                  </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" style="width: 100%;margin-left: 20%;">
+        <div class="modal-content" style="width: 100%;">
+            <div class="modal-header" style="height: 85px;width: 74%;">
+                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"
+                    style="margin-left: 35%;">Demande acceptée avec succès</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</div>

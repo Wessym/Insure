@@ -1,0 +1,248 @@
+<section class="vh-100" style="margin-bottom: 62rem;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div>
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+
+                                <!-- **************************************************************** -->
+
+
+                                <div class="loader text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"
+                                    style="padding-bottom: 10%;">
+                                    <span>S'inscrire</span>
+                                    <span>S'inscrire</span>
+                                </div>
+
+
+                                <!-- **************************************************************** -->
+
+
+
+
+
+                                <form class="mx-1 mx-md-4" [formGroup]="userForm">
+
+
+                                    <!-------------------------------Profile Pic--------------------------------------------------------->
+                                    <div style="margin-left: 3rem;">
+                                        <div class="form-group text-center">
+                                            <input type="file" accept=".png" style="visibility: hidden;"
+                                                class="form-control text-center" #filePicker
+                                                (change)='onImageSelected($event)'>
+                                        </div>
+                                        <div class="d-flex text-center">
+                                            <div class="align-items-center text-center">
+                                                <img style="border-radius:800px;border-style: dotted;width: 200px;height: 200px;"
+                                                    [src]="imagePreview" alt="">
+                                                <div class="form-group text-center" style="margin-left: 20px;margin-top: 10px;">
+                                                    <button type="button" class="buttonp" (click)="filePicker.click()" value="Signup">
+                                                        <span class="buttonp__text">Photo</span>
+                                                        <span class="buttonp__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                                      </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-------------------------------Profile Pic--------------------------------------------------------->
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example1c" style="color: black;">Nom &
+                                                Prénom</label>
+                                            <input type="text" formControlName="name" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div
+                                        *ngIf="userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched)">
+                                        <div *ngIf="userForm.controls['name'].errors.required"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            Nom & Prénom est requis
+                                        </div>
+                                        <div *ngIf="userForm.controls['name'].errors.minlength"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            S'il vous plaît entrer Nom & Prénom valide
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example1c"
+                                                style="color: black;">CIN</label>
+                                            <input type="number" formControlName="cin" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div
+                                        *ngIf="userForm.controls['cin'].invalid && (userForm.controls['cin'].dirty || userForm.controls['cin'].touched)">
+                                        <div *ngIf="userForm.controls['cin'].errors.required"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            CIN est requis
+                                        </div>
+                                        <div *ngIf="userForm.controls['cin'].errors.max || userForm.controls['cin'].errors.min"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            S'il vous plaît entrer une CIN valide
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-phone fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example1c"
+                                                style="color: black;">Téléphone</label>
+                                            <input type="number" formControlName="tel" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div
+                                        *ngIf="userForm.controls['tel'].invalid && (userForm.controls['tel'].dirty || userForm.controls['tel'].touched)">
+                                        <div *ngIf="userForm.controls['tel'].errors.required"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            Numero Téléphone est requis
+                                        </div>
+                                        <div *ngIf="userForm.controls['tel'].errors.max || userForm.controls['tel'].errors.min"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            S'il vous plaît entrer une numero téléphone valide
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-home fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example1c"
+                                                style="color: black;">Adresse</label>
+                                            <input type="text" formControlName="adresse" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div
+                                        *ngIf="userForm.controls['adresse'].invalid && (userForm.controls['adresse'].dirty || userForm.controls['adresse'].touched)">
+                                        <div *ngIf="userForm.controls['adresse'].errors.required"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            Adresse est requis
+                                        </div>
+                                        <div *ngIf="userForm.controls['adresse'].errors.minlength"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            S'il vous plaît entrer Adresse valide
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example3c"
+                                                style="color: black;">Email</label>
+                                            <input type="email" formControlName="email" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div
+                                        *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)">
+                                        <div *ngIf="userForm.controls['email'].errors.required"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            Email est requis
+                                        </div>
+                                        <div *ngIf="userForm.controls['email'].errors.email"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            Format d'e-mail invalide
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example4c" style="color: black;">Mot de
+                                                Passe</label>
+                                            <input type="password" formControlName="pwd" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div
+                                        *ngIf="userForm.controls['pwd'].invalid && (userForm.controls['pwd'].dirty || userForm.controls['pwd'].touched)">
+                                        <div *ngIf="userForm.controls['pwd'].errors.required"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            Mot de passe requis
+                                        </div>
+                                        <div *ngIf="userForm.controls['pwd'].errors.minlength || userForm.controls['pwd'].errors.pattern"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            Le mot de passe doit comporter au moins 8 caractères 1 lettre majuscule 1
+                                            caractères spéciaux
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example4cd"
+                                                style="color: black;">Repeter votre Mot de Passe</label>
+                                            <input type="password" formControlName="confirmPwd" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div
+                                        *ngIf="userForm.controls['confirmPwd'].invalid && (userForm.controls['confirmPwd'].dirty || userForm.controls['confirmPwd'].touched)">
+                                        <div *ngIf="userForm.controls['confirmPwd'].errors.mustMatch" class="textdanger"
+                                            style="color: red;margin-top: -18px;margin-left: 30px;margin-bottom: 10px;">
+                                            Confirmer le mot de passe doit correspondre au mot de passe
+                                        </div>
+                                    </div>
+
+                                    <div class="align-items-center" style="margin-bottom: 30px;margin-left: 35px;">
+                                        <input type="radio" style="margin-left: 10px;" formControlName="role"
+                                            value="Assuré"><label for=""
+                                            style="color:black;margin-left: 5px; ">Assuré</label>
+                                        <input type="radio" style="margin-left: 10px;" formControlName="role"
+                                            value="Assureur"><label for=""
+                                            style="color:black;margin-left: 5px; ">Assureur</label>
+                                    </div>
+
+
+                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c"
+                                        formControlName="regles">
+                                    <div class="form-check d-flex justify-content-center mb-5">
+
+                                        <label class="form-check-label" for="form2Example3" style="color: black;">
+                                            Toutes les déclarations dans <a routerLink="/signup"
+                                                style="color: black;">Conditions d'utilisation</a>
+                                        </label>
+                                    </div>
+
+                                    <div
+                                        style="color: red;font-size: 25px;margin-bottom: 15px;margin-left: 25px;font-family: monospace;">
+                                        {{errorMsg}}
+                                    </div>
+
+
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="button_top" [disabled]="userForm.invalid"
+                                            (click)="signup()">S'inscrire</button>
+                                    </div>
+
+                                </form>
+                                <div>
+                                    <span>*NB : You can't signup before complete all required informations</span>
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                    class="img-fluid" alt="Sample image">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
